@@ -9,7 +9,7 @@ public class VirtualVisit : MonoBehaviour
     public Texture2D mainTexture;
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject sphere;
-    [SerializeField] private Material[] materials;
+    public Material[] materials;
     Material nextMaterial;
     int STRINGSPACE = 7;
     public GameObject straightArrow;
