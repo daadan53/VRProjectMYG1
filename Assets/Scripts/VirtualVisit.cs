@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -14,10 +16,28 @@ public class VirtualVisit : MonoBehaviour
     int STRINGSPACE = 7;
     public GameObject straightArrow;
     public GameObject backArrow;
+    [SerializeField] GameObject panelButtons;
 
     private void Start() 
     {
         backArrow.SetActive(false);
+        TakeButton();
+    }
+
+    private void TakeButton()
+    {
+        foreach(Transform button in panelButtons.transform)
+        {
+            Button btn = button.GetComponent<Button>();
+            if(btn != null)
+            {
+                btn.onClick.AddListener(() => TeleportPoint(btn));
+            }
+            else 
+            {
+                Debug.LogError("Le GameObject " + button.name + " n'a pas de composant Button");
+            }
+        }
     }
 
     private void ActivateOrNoArrow(Material _currentMaterial)
